@@ -21,8 +21,8 @@ function Sprite:draw()
     local x, y = self.position:unpack()
 
     if self.centered then
-        x = x - self.width/2
-        y = y - self.height/2
+        x = x - self.width/2*self.scale.x
+        y = y - self.height/2*self.scale.y
     end
 
     x = math.floor(x + 0.5)
@@ -40,13 +40,13 @@ function Sprite:calculateSize()
 end
 
 function Sprite:setPosition(x, y)
-    self.position.x = x  
-    self.position.y = y  
+    self.position.x = x
+    self.position.y = y
 end
 
 function Sprite:setScale(x, y)
-    self.scale.x = x  
-    self.scale.y = y  
+    self.scale.x = x
+    self.scale.y = y
 end
 
 function Sprite:setCentered(value)

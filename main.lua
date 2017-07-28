@@ -3,7 +3,7 @@ require 'globals'
 
 Lume    = require 'libs.lume'
 Husl    = require 'libs.husl'
-Class   = require 'libs.class'
+Class   = require 'libs.middleclass'
 Vector  = require 'libs.vector'
 State   = require 'libs.state'
 Signal  = require 'libs.signal'
@@ -25,14 +25,15 @@ if DEBUG then
 end
 
 States = {
-    menu = require 'states.menu',
-    game = require 'states.game',
+    splash = require 'states.splash',
+    menu   = require 'states.menu',
+    game   = require 'states.game',
 }
 
 function love.load()
     love.window.setIcon(love.image.newImageData(CONFIG.window.icon))
-    love.graphics.setDefaultFilter(CONFIG.graphics.filter.down, 
-                                   CONFIG.graphics.filter.up, 
+    love.graphics.setDefaultFilter(CONFIG.graphics.filter.down,
+                                   CONFIG.graphics.filter.up,
                                    CONFIG.graphics.filter.anisotropy)
 
     -- Draw is left out so we can override it ourselves
@@ -42,7 +43,7 @@ function love.load()
     end
 
     State.registerEvents(callbacks)
-    State.switch(States.menu)
+    State.switch(States.splash)
 
     if DEBUG then
         local loadTimeEnd = love.timer.getTime()
@@ -53,6 +54,8 @@ function love.load()
 end
 
 function love.update(dt)
+    Timer.update(dt)
+
     if DEBUG and Lovebird then
         Lovebird.update()
     end
