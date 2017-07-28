@@ -40,7 +40,7 @@ function menu:draw()
 
     -- Start text fades in and out
     local r, g, b = self.startColor[1], self.startColor[2], self.startColor[3]
-    love.graphics.setColor(r, g, b, 255 * math.abs(math.sin(love.timer.getTime()*2)))
+    love.graphics.setColor(r, g, b, 255 * (math.sin(love.timer.getTime()*2)+1)/2)
     love.graphics.printf(self.startText, 0, love.graphics.getHeight()/2 - self.startFont:getHeight(self.startText)/2, love.graphics.getWidth(), "center")
 end
 
